@@ -149,9 +149,13 @@ def txt2img_output(image_url):
 def get_base_models():
     api_url = 'https://civitai.com/api/v1/models?baseModels=GetModels'
     json_return = _api.request_civit_api(api_url, True)
-    default_options = ["SD 1.4","SD 1.5","SD 1.5 LCM","SD 2.0","SD 2.0 768","SD 2.1","SD 2.1 768",
-    "SD 2.1 Unclip","SDXL 0.9","SDXL 1.0","SDXL 1.0 LCM","SDXL Distilled","SDXL Turbo","SDXL Lightning",
-    "Stable Cascade","Pony","SVD","SVD XT","Playground v2","PixArt a", "Flux.1 S", "Flux.1 D","Other"]
+    default_options = [
+        "Aura Flow", "Chroma", "CogVideoX", "Flux .1 S", "Flux .1 D", "Flux .1 Krea", "Flux .1 Kontext", "HiDream", "Hunyuan 1", "Hunyuan Video",
+        "Illustrious", "Kolors", "LTXV", "Lumina", "Mochi", "NoobAI", "Other", "PixArt α", "PixArt Σ", "Pony", "Pony V7", "Qwen",
+        "SD 1.4", "SD 1.5", "SD 1.5 LCM", "SD 1.5 Hyper", "SD 2.0", "SD 2.1", "SDXL 1.0", "SDXL Lightning", "SDXL Hyper",
+        "Wan Video 1.3B t2v", "Wan Video 14B t2v", "Wan Video 14B i2v 480p", "Wan Video 14B i2v 720p", "Wan Video 2.2 T2IV-5B",
+        "Wan Video 2.2 I2V-A14B", "Wan Video 2.2 T2V-A14B", "Wan Video 2.5 T2V", "Wan Video 2.5 I2V"
+    ]
     
     if not isinstance(json_return, dict):
         print("Couldn't fetch latest baseModel options, using default.")
@@ -379,40 +383,29 @@ def on_ui_tabs():
             return gr.Textbox.update(value=newpath)
 
         # Javascript Functions #
-        
-        list_html_input.change(fn=None, inputs=hide_installed, _js="(toggleValue) => hideInstalled(toggleValue)")
-        hide_installed.input(fn=None, inputs=hide_installed, _js="(toggleValue) => hideInstalled(toggleValue)")
-        
-        civitai_text2img_output.change(fn=None, inputs=civitai_text2img_output, _js="(genInfo) => genInfo_to_txt2img(genInfo)")
-        
-        download_selected.click(fn=None, _js="() => deselectAllModels()")
-        
-        select_all.click(fn=None, _js="() => selectAllModels()")
-        
-        list_models.select(fn=None, inputs=list_models, _js="(list_models) => select_model(list_models)")
-        
-        preview_html_input.change(fn=None, _js="() => adjustFilterBoxAndButtons()")
-        preview_html_input.change(fn=None, _js="() => setDescriptionToggle()")
-        
-        back_to_top.click(fn=None, _js="() => BackToTop()")
-        
-        page_slider.release(fn=None, _js="() => pressRefresh()")
-        
+        def dummy_fn(*args):
+            return None
+
+        list_html_input.change(fn=dummy_fn, inputs=[hide_installed], _js="(toggleValue) => hideInstalled(toggleValue)")
+        hide_installed.input(fn=dummy_fn, inputs=[hide_installed], _js="(toggleValue) => hideInstalled(toggleValue)")
+        civitai_text2img_output.change(fn=dummy_fn, inputs=[civitai_text2img_output], _js="(genInfo) => genInfo_to_txt2img(genInfo)")
+        download_selected.click(fn=dummy_fn, _js="() => deselectAllModels()")
+        select_all.click(fn=dummy_fn, _js="() => selectAllModels()")
+        list_models.select(fn=dummy_fn, inputs=[list_models], _js="(list_models) => select_model(list_models)")
+        preview_html_input.change(fn=dummy_fn, _js="() => adjustFilterBoxAndButtons()")
+        preview_html_input.change(fn=dummy_fn, _js="() => setDescriptionToggle()")
+        back_to_top.click(fn=dummy_fn, _js="() => BackToTop()")
+        page_slider.release(fn=dummy_fn, _js="() => pressRefresh()")
         card_updates = [queue_trigger, download_finish, delete_finish]
         for func in card_updates:
-            func.change(fn=None, inputs=current_model, _js="(modelName) => updateCard(modelName)")
-        
-        list_html_input.change(fn=None, inputs=show_nsfw, _js="(hideAndBlur) => toggleNSFWContent(hideAndBlur)")
-        show_nsfw.change(fn=None, inputs=show_nsfw, _js="(hideAndBlur) => toggleNSFWContent(hideAndBlur)")
-        
-        list_html_input.change(fn=None, inputs=size_slider, _js="(size) => updateCardSize(size, size * 1.5)")
-        size_slider.change(fn=None, inputs=size_slider, _js="(size) => updateCardSize(size, size * 1.5)")
-        
-        model_preview_html_input.change(fn=None, inputs=model_preview_html_input, _js="(html_input) => inputHTMLPreviewContent(html_input)")
-        
-        queue_html_input.change(fn=None, _js="() => setSortable()")
-        
-        click_first_item.change(fn=None, _js="() => clickFirstFigureInColumn()")
+            func.change(fn=dummy_fn, inputs=[current_model], _js="(modelName) => updateCard(modelName)")
+        list_html_input.change(fn=dummy_fn, inputs=[show_nsfw], _js="(hideAndBlur) => toggleNSFWContent(hideAndBlur)")
+        show_nsfw.change(fn=dummy_fn, inputs=[show_nsfw], _js="(hideAndBlur) => toggleNSFWContent(hideAndBlur)")
+        list_html_input.change(fn=dummy_fn, inputs=[size_slider], _js="(size) => updateCardSize(size, size * 1.5)")
+        size_slider.change(fn=dummy_fn, inputs=[size_slider], _js="(size) => updateCardSize(size, size * 1.5)")
+        model_preview_html_input.change(fn=dummy_fn, inputs=[model_preview_html_input], _js="(html_input) => inputHTMLPreviewContent(html_input)")
+        queue_html_input.change(fn=dummy_fn, _js="() => setSortable()")
+        click_first_item.change(fn=dummy_fn, _js="() => clickFirstFigureInColumn()")
         
         # Filter button Functions #
         
@@ -671,7 +664,7 @@ def on_ui_tabs():
         )
         
         cancel_model.click(_download.download_cancel)
-        cancel_all_model.click(_download.download_cancel_all)
+        cancel_all_model.click(_download.download_cancel)
         
         cancel_model.click(fn=None, _js="() => cancelCurrentDl()")
         cancel_all_model.click(fn=None, _js="() => cancelAllDl()")
