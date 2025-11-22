@@ -1,22 +1,12 @@
 body {
-    background: linear-gradient(135deg, #0b0f19 0%, #1a1a2e 50%, #16213e 100%);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #0b0f19;
 }
 
 .model-block {
-    box-shadow: 0 8px 32px rgba(51, 57, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
-    padding: 15px 25px 15px;
-    margin-bottom: 25px;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.3s ease;
-}
-
-.model-block:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 40px rgba(51, 57, 255, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+	box-shadow: 0px 0px 1px 3px #3339ff30;
+    border-radius: 10px;
+    padding: 1px 20px 10px;
+    margin-bottom: 20px;
 }
 
 .model-block code {
@@ -36,60 +26,54 @@ body {
 	padding-top: 1em;
 	max-width: 20em;
 	cursor: zoom-in;
-	transition: all 0.3s ease;
-	border-radius: 10px;
-	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-}
-
-.sampleimgs .model-block img:hover,
-.sampleimgs .model-block video:hover {
-	transform: scale(1.05);
-	box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+	transition: max-width 0.1s;
 }
 
 /* Text adjustments */
 h1, h2, h3, h4, h5, dd, dt, p, a, label {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Source Sans Pro', 'ui-sans-serif', 'system-ui', sans-serif;
 }
 
 h3 {
-    font-size: 18px;
-    color: #e0e7ff;
+    font-size: 16px;
 }
 
 h2 {
-    margin: 20px 0px 10px;
-    font-size: 24px;
-    color: #c7d2fe;
+    margin: 16px 0px 8px;
+    font-size: 22px;
+}
+
+ul {
+    padding-left: 18px;
 }
 
 p {
-    color: #f8fafc;
-    margin: 0px 0px 8px;
-    font-size: 15px;
+    color: #F3F4F6;
+    margin: 0px 0px 6px;
+    font-size: 14px;
 }
 
 dt {
-	font-size: 17px;
-    color: #93c5fd !important;
+	font-size: medium;
+    color: #80a6c8 !important;
+    font-size: 16px;
 }
 
 dd {
-	padding: 0px 0px 7px 12px;
+	padding: 0px 0px 5px 10px;
     margin-inline-start: 0px;
-    font-size: 15px;
-    color: #f8fafc;
+    font-size: 14px;
+    color: #F3F4F6;
 }
 
 a {
-    color: #dbeafe;
-    font-weight: 600;
-    text-decoration: none;
-    transition: color 0.2s ease;
+    color: #F3F4F6;
+    font-weight: bold;
+    text-decoration: unset;
 }
 
 a:hover {
-    color: #93c5fd;
+    color: #60A5FA;
 }
 
 .civitai_txt2img {
@@ -124,8 +108,7 @@ a:hover {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(5px);
+    background: rgba(0, 0, 0, .5); 
     z-index: 999; /* Below the zoomed image */
     cursor: zoom-out;
 }
@@ -159,21 +142,14 @@ a:hover {
     width: 48px;
     height: 48px;
     min-width: 48px;
-    border-radius: 50%;
+    border-radius: 48px;
     text-decoration: none;
-    border: 2px solid rgba(255, 255, 255, 0.2);
+    border: 0;
     padding: 0;
     background-color: rgba(0,0,0,0.31);
     display: inline-block!important;
     margin-left: 5px!important;
     vertical-align: middle;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    transition: all 0.3s ease;
-}
-
-.avatar:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
 }
 
 .avatar img {
@@ -206,16 +182,11 @@ a:hover {
 
 .description-toggle-label {
     display: flex;
-    padding: 12px 0px 0px 0px;
-    font-weight: 600;
+    padding: 10px 0px 0px 0px;
+    font-weight: bold;
     cursor: pointer;
     font-size: large;
-    color: #dbeafe;
-    transition: color 0.2s ease;
-}
-
-.description-toggle-label:hover {
-    color: #93c5fd;
+    color: white;
 }
 
 .description-toggle-checkbox {
@@ -259,25 +230,23 @@ a:hover {
 }
 
 .tabs {
-    border-radius: 15px;
+    border-radius: 10px;
     overflow: hidden;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tab {
+    width: 100%;
+    color: white;
+    overflow: hidden;
+    margin-left: -15px;
 }
 
 .tab-label {
     display: flex;
     padding: 1em;
-    font-weight: 600;
+    font-weight: bold;
     cursor: pointer;
     font-size: large;
-    background: linear-gradient(90deg, rgba(51, 57, 255, 0.1) 0%, rgba(147, 197, 253, 0.1) 100%);
-    transition: background 0.3s ease;
-}
-
-.tab-label:hover {
-    background: linear-gradient(90deg, rgba(51, 57, 255, 0.2) 0%, rgba(147, 197, 253, 0.2) 100%);
 }
 
 .civitai-tags-container {
